@@ -6,19 +6,18 @@
 div #results {}
 
 div #titlebar {
-        background-color: #a11;
+        background: #a11;
         color: #eee;
         }
 
 
-html {
-        background-color: #eee;
+body {
+        background: #eee;
         font-size: 110%;
         color: #333;
         }
 
 div #main {
-        align: center;
         width: 40 em;
         margin-left: auto;
         margin-right: auto;
