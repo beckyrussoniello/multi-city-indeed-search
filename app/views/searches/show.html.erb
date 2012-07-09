@@ -1,0 +1,15 @@
+<div>
+<h2>Search Results:</h2>
+
+<div>
+<% @results.each do |r| %>
+  <p>
+  <%= link_to r["jobtitle"], r["url"] %><br />
+  <%= r["company"] %> - <%= r["formattedLocation"] %><br />
+  <%= sanitize(raw r["snippet"]) %><br />
+  <%= r["source"] %> - <%= r["formattedRelativeTime"] %><br />
+  </p>
+
+<% end %>
+</div>
+</div>

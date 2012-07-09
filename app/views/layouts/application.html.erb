@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Multi-City Indeed Search</title>
+  <%= stylesheet_link_tag :flutie, "application", :media => "all" %>
+  <%= javascript_include_tag :flutie, "application" %>
+  <%= csrf_meta_tags %>
+
+<script type="text/javascript" src="http://gdc.indeed.com/ads/apiresults.js"></script>
+
+</head>
+<body>
+
+<%= yield %>
+
+<span id=indeed_at><a href="http://www.indeed.com/">jobs</a> by <a
+href="http://www.indeed.com/" title="Job Search"><img
+src="http://www.indeed.com/p/jobsearch.gif" style="border: 0;
+vertical-align: middle;" alt="Indeed job search"></a></span>
+
+
+</body>
+</html>

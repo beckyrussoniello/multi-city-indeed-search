@@ -1,0 +1,11 @@
+<%= form_for @search do |search_form| %>
+
+What: <%= search_form.text_field :query %>
+
+  <%= fields_for @location do |loc_field| %>
+Where: <%= loc_field.text_field :name %>
+  <% end %>
+
+  <%= search_form.submit "Search" %>
+<% end %>
+
