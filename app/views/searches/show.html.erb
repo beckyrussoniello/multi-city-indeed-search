@@ -1,9 +1,16 @@
-<div>
+<div id="titlebar">
+<h2>Branding Goes Here</h2>
+</div>
+
+<div id="main">
+
+<%= render 'form' %>
+
+<div id="results">
 <h2>Search Results:</h2>
 
-<div>
 <% @results.each do |r| %>
-  <p>
+  <p class="result">
   <%= link_to r["jobtitle"], r["url"] %><br />
   <%= r["company"] %> - <%= r["formattedLocation"] %><br />
   <%= sanitize(raw r["snippet"]) %><br />
