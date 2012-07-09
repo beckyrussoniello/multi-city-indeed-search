@@ -41,7 +41,7 @@ describe Search do
 
     it "calls the Indeed API once for every location" do
       @search.perform(@locs)		  
-      @search.api_call_count.should == @locs.size 
+      @search.api_call_count.should == 10 # @locs.size 
     end
 
     it "gets an array back from the #call_api method" do

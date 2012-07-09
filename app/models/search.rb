@@ -8,14 +8,10 @@ class Search < ActiveRecord::Base
 
   attr_accessible :encoded_query, :query
   attr_accessor :api_call_count
-  validates :query, :presence => :true
-  validates :encoded_query, :presence => :true
+  validates :query, :encoded_query, :presence => :true
   after_initialize :encode
-
-  BASE_URI = 'http://api.indeed.com/ads/apisearch'
-  API_KEY = '3990618342905680'
-  RELEVANT_KEYS = ["jobtitle", "company", "formattedLocation", "date", "source", "snippet", "url", "formattedRelativeTime"]
-  LOCS_LIMIT = 9 # 10 locations is the max, so 9 is the max array index
+  has_many :locations
+  validates_associated :locations
 
   def perform(locs)
     Location.create_all(self, locs[0..LOCS_LIMIT])
@@ -38,13 +34,11 @@ class Search < ActiveRecord::Base
   end
 
   def simplify(hash)
-    hash.keep_if {|key, value| RELEVANT_KEYS.index(key)}
+    hash.keep_if {|key| RELEVANT_KEYS.index(key)} # , value
   end
 
-# protected -- commented out for testing...should I really do this?
-
   def call_api(loc)
-    uri = URI.parse("#{BASE_URI}?publisher=#{API_KEY}&q=#{self.encoded_query}&l=#{loc.encoded_name}&sort=&radius=0&v=2&format=json")
+    uri = URI.parse("#{BASE_URI}?publisher=#{API_KEY}&q=#{self.encoded_query}&l=#{loc.encoded_name}#{END_OF_URI}")
     page = Net::HTTP.get(uri)
     @api_call_count ||= 0
     @api_call_count += 1 unless page.nil? or page.empty?

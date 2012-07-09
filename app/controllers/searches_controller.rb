@@ -18,6 +18,7 @@ class SearchesController < ApplicationController
 
   def show
     @search = Search.find(params[:id])
+    @location = Location.new # this is only so fields_for will work
     @results = @search.perform(session[:locations])
   end
 end
