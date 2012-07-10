@@ -21,4 +21,5 @@ class SearchesController < ApplicationController
     @location = Location.new # this is only so fields_for will work
     @results = @search.perform(session[:locations])
   end
+
 end

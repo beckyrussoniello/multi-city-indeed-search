@@ -8,6 +8,7 @@ class ArrayExtension
 
   Array.class_eval do
     def listify
+      self.each do |item| item = item.strip end
       str = self[0].to_s
       return str if self.size == 1
       self[1..-2].each do |item| str << ", #{item.capitalize}" end

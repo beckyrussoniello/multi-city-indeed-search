@@ -7,16 +7,21 @@
 <%= render 'form' %>
 
 <div id="results">
-<h2>Search Results:</h2>
+
+<% if @results.empty? %>
+<p class="error message"><%= NO_RESULTS_ERROR_MSG %></p>
+<% else %>
+<h6>Search Results:</h6>
 
 <% @results.each do |r| %>
   <p class="result">
-  <%= link_to r["jobtitle"], r["url"] %><br />
-  <%= r["company"] %> - <%= r["formattedLocation"] %><br />
-  <%= sanitize(raw r["snippet"]) %><br />
+  <span class="job-title"><%= link_to r["jobtitle"], r["url"] %></span><br />
+  <span class="company"><%= r["company"] %></span> - <span class="location"><%= r["formattedLocation"] %></span><br />
+  <span class="snippet"><%= sanitize(raw r["snippet"]) %></span><br />
   <%= r["source"] %> - <%= r["formattedRelativeTime"] %><br />
   </p>
 
+<% end %>
 <% end %>
 </div>
 </div>
