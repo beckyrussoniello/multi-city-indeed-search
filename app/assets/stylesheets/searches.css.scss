@@ -2,7 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
 div #results {} //alternate background: #eee; and background: #ddd;
 
 
@@ -15,18 +14,24 @@ div #results {} //alternate background: #eee; and background: #ddd;
 h2 {
         background: #e00;
         color: #fee;
+	padding: .5em;
 }
 
+
+h6 {
+	font-size: 90%;
+	color: #222;
+	}
 
 body {
         background: #eee;
         color: #333;
-        width: 40 em;
-        margin-left: auto;
-        margin-right: auto;
-        //some of this belongs in div #main
         }
 
+#main {
+        margin-left: auto;
+        margin-right: auto;
+	}
 
 //span #jobtitle
 a {
@@ -36,23 +41,44 @@ a {
         text-transform: uppercase;
 }
 
+#results {
+	width: 60em;
+        margin-left: auto;
+        margin-right: auto;
+}
 
 #results > p {
-        margin-top: 4em;
+        margin-top: 1em;
+	background: #ddd;
 }
 
 
-span .snippet {
-        font-size: 110%;
+/*
+p:nth-child(even) {
+	background: yellow;
+	}
+*/
+
+.snippet {
+        font-size: 105%;
 }
 
+span {
+	padding: 1em;
+	}
 
-span .company {
+div {
+	margin: 1em;
+	}
+
+
+.company {
         font-size: 110%;
         font-weight: 600; // 700 is bold
 }
 
-span .location {
+.location {
         font-size: 110%;
         font-weight: 500; //half-bold
 }
+
