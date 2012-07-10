@@ -3,22 +3,45 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-div #results {}
+div #results {} //alternate background: #eee; and background: #ddd;
 
-div #titlebar {
-        background: #a11;
-        color: #eee;
-        }
+
+//div #titlebar
+h2 {
+        background: #ee0;
+        color: #fee;
+}
 
 
 body {
         background: #eee;
-        font-size: 110%;
         color: #333;
-        }
-
-div #main {
         width: 40 em;
         margin-left: auto;
         margin-right: auto;
+        //some of this belongs in div #main
         }
+
+
+//span #jobtitle
+a {
+        color: #555;
+        font-size: 85%;
+        font-weight: 300; // 400 is normal
+}
+
+
+span .snippet {
+        font-size: 110%;
+}
+
+
+span .company {
+        font-size: 110%;
+        font-weight: 600; // 700 is bold
+}
+
+span .location {
+        font-size: 110%;
+        font-weight: 500; //half-bold
+}
