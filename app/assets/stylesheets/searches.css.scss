@@ -2,25 +2,28 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-div #results {} //alternate background: #eee; and background: #ddd;
 
+html { background: #eef; }
 
 #titlebar {
-        text-align: center;
         margin-bottom: 2em;
-}
-
-
-h2 {
-        background: #e00;
-        color: #fee;
+	background: #09c;
+	color: #fee;	
 	padding: .5em;
+	border-radius: 1em;
+	margin-right: 4em; margin-left: 4em;
+	font-family: "Courier New"; font-size: 200%;
 }
+
+h2	{
+	text-align: center;
+	}
 
 
 h6 {
 	font-size: 90%;
 	color: #222;
+	font-weight: 550;
 	}
 
 body {
@@ -28,57 +31,67 @@ body {
         color: #333;
         }
 
-#main {
+#main {	
         margin-left: auto;
-        margin-right: auto;
 	}
 
-//span #jobtitle
-a {
-        color: #555;
-        font-size: 90%;
-        font-weight: 300; // 400 is normal
-        text-transform: uppercase;
-}
 
 #results {
-	width: 60em;
+	width: 50em;
         margin-left: auto;
-        margin-right: auto;
 }
 
 #results > p {
         margin-top: 1em;
-	background: #ddd;
-}
-
-
-/*
-p:nth-child(even) {
-	background: yellow;
-	}
-*/
-
-.snippet {
-        font-size: 105%;
-}
-
-span {
+	background: #dfe5f0;
 	padding: 1em;
+}
+
+
+
+#results > p:nth-child(even) {
+	background: #dfe5e5;
 	}
+
+
 
 div {
 	margin: 1em;
+	padding: .5em;
 	}
 
-
+.snippet { font-size: 105%; }
+.snippet + br { font-size: 50%; }
 .company {
-        font-size: 110%;
-        font-weight: 600; // 700 is bold
+	padding-right: 9em;
+	font-size: 130%;
+	font-weight: 550;
+	letter-spacing: +.03em;
 }
 
 .location {
-        font-size: 110%;
-        font-weight: 500; //half-bold
+	padding-left: 13em;
+	font-size: 110%;
 }
+
+
+
+#what, #where {
+	text-transform: uppercase;
+	font-size: 90%;
+	color: #555;
+	padding: 1em;
+	}
+
+
+
+
+a {
+	color: #333;
+	text-transform: uppercase;
+	font-weight: 350;
+	font-size: 90%;
+	letter-spacing: +.08em;
+	font-family: Arial;
+	}
 
