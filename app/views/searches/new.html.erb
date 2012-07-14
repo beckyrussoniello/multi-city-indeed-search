@@ -1,5 +1,23 @@
-<h1>Multi-City Job Search</h1>
+<!-- <div class="cloud-tops-container">
+  <div id="highest-cloud-top"></div>
+</div> -->
+<div class="cloud-tops-container">
+  <div class="cloud-top" id="left-cloud-top"></div>
+  <div class="cloud-top" id="highest-cloud-top"></div>
+  <div class="cloud-top" id="right-cloud-top"></div>
+</div>
 
-<h2>Find jobs on Indeed in multiple cities at once!</h2>
+<div id="logo-top" class="logo"></div>
+
+<div id="big-logo" class="logo">
+  <h1>multi-city job search</h1>
+</div>
+
+<h3>Browse jobs in multiple cities at once</h3>
+
+<% if flash[:notice] %>
+<p class="flash-notice"><%= notice %></p>
+<% end %>
 
 <%= render 'form' %>
+

@@ -1,6 +1,4 @@
-require 'cgi'
-require 'json'
-require 'net/http'
+%w(cgi json net/http).each { |x| require x }
 
 class Search < ActiveRecord::Base
 
@@ -22,7 +20,7 @@ class Search < ActiveRecord::Base
         results << self.simplify(item)
       end
     end
-    results.uniq.sort_by_date
+    results.ensure_uniq.sort_by_date
   end
 
   def locations
@@ -30,7 +28,7 @@ class Search < ActiveRecord::Base
   end
 
   def self.too_many?(locations)
-    return locations.size > 10
+    return locations.scan(/,/).size > 1 + LOCS_LIMIT
   end
 
   def simplify(hash)

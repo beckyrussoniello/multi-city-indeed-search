@@ -1,17 +1,21 @@
-<div id="titlebar">
-<h2>Branding Goes Here</h2>
+<div id="titlebar" class="logo">
+<h2>multi-city job search</h2>
 </div>
 
 <div id="main">
 
 <%= render 'form' %>
 
-<div id="results">
+<% if flash[:notice] %>
+<p class="flash-notice"><%= flash[:notice] %></p>
+<% end %>
 
+<div id="results">
 <% if @results.empty? %>
 <p class="error message"><%= NO_RESULTS_ERROR_MSG %></p>
 <% else %>
-<h6>Search Results:</h6>
+<%= cache do %>
+<!-- h6 >Search Results:< /h6 -->
 
 <% @results.each do |r| %>
   <p class="result">
@@ -21,6 +25,7 @@
   <%= r["source"] %> - <%= r["formattedRelativeTime"] %><br />
   </p>
 
+<% end %>
 <% end %>
 <% end %>
 </div>

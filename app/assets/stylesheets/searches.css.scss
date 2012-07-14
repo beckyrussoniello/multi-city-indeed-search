@@ -4,20 +4,87 @@
 
 html { background: #eef; }
 
-#titlebar {
-        margin-top: 0.5em; margin-bottom: 0.5em;
+.logo {
 	background: #09c;
 	color: #fee;	
-	padding: 0em; padding-top: 0.3em; padding-bottom: .3em;
-	border-radius: 1em;
-	margin-right: 2em; margin-left: 2em;
 	font-family: "Courier New"; font-size: 200%;
+	padding: 0em; padding-top: 0.3em; padding-bottom: .3em;
+  	margin-top:0em;
+	display: block;
 }
 
-h2	{
+#titlebar {
+        margin-top: 0.5em; margin-bottom: 0.5em;
+	border-radius: 1em;
+	margin-right: 2em; margin-left: 2em;
+
+}
+
+#highest-cloud-top {
+	/* width:9em; height:3em;
+	background: #09c;
+	margin-left: auto; margin-right: auto;*/
+	border-top-left-radius:4em; border-top-right-radius:4em; 
+	height: 6em;
+}
+
+#left-cloud-top, #right-cloud-top {
+	margin-top: 2.5em;
+}
+
+#left-cloud-top { 
+	border-top-left-radius: 10em; 
+	border-top-right-radius: 8em;
+}
+
+#right-cloud-top { 
+	border-top-left-radius: 8em;
+	border-top-right-radius: 10em; 
+}
+
+.cloud-tops-container { 
+	width:33em; height: 6em;
+	margin-top:2em; margin-bottom:0em;
+	margin-left: auto; margin-right: auto;
+	padding: 0em;
+}
+
+.cloud-top { /* seems like these ems != other ems... */
+	width:11em; height:3.5em;
+	/*border-top-left-radius:12em; border-top-right-radius:12em;*/
+	margin-left:0em; margin-right:0em;
+	float:left; display:inline;
+	background: #09c;
+	color: #fee;	
+	padding: 0em; padding-top:0em;
+}
+#logo-top {
+	width:23em; height:1.3em;
+	border-top-left-radius:9em; border-top-right-radius:9em;
+	margin-right:auto; margin-left:auto;
+	margin-top:0em; margin-bottom: 0em;
+}
+
+#big-logo {
+	margin-top: 0em; margin-bottom: 1em;
+    	margin-right: auto; margin-left: auto;
+	padding-top: 1em;
+	border-radius:1em;
+	border-top-left-radius:4em; border-top-right-radius:4em;
+	width: 30em;
+}
+
+h1, h2	{
 	text-align: center;
 	margin: 0;
 	}
+
+h3 {
+	color: #444;
+	text-align: center;
+	font-family: "Courier New";
+	letter-spacing:0.1em;
+}
 
 
 h6 {
@@ -38,6 +105,26 @@ body {
 	margin-right: auto;
 	}
 
+.small {
+	margin-left: 37em;
+	font-size: 85%;
+}
+
+::-webkit-input-placeholder {
+ 	color: #888;
+  	font-family: "Arial";
+}
+
+:-moz-placeholder {  
+   	color: #888;  
+  	font-family: "Arial";
+}
+
+textfield, input {
+  	font-family: "Arial";
+	letter-spacing: .07em;
+	font-weight: 550;
+}
 
 #results {
 	margin-top: 0.3em;
@@ -111,4 +198,18 @@ a {
 b { 	font-weight: 600; 
 	font-size: 95%;
 	color: #444; 
+}
+
+.flash-notice {
+	color:  #f09;
+	width: 36em;
+	margin-left:auto; margin-right:auto;
+}
+
+.field_with_errors { display: inline; margin:0em; padding:0em; }
+
+
+#indeed_at {
+	margin-top: 6em;
+	margin-left: 7em;
 }

@@ -1,12 +1,13 @@
 <div id="search">
-<%= form_for @search do |search_form| %>
+<%= form_for @search, :method => :post, :url => searches_path do |search_form| %>
 
 <span id="what">What: <%= search_form.text_field :query %></span>
 
   <%= fields_for @location do |loc_field| %>
-<span id="where">Where: <%= loc_field.text_field :name %></span>
+<span id="where">Where: <%= loc_field.text_field :name, :placeholder => "chicago, austin tx, 46201" %></span>
   <% end %>
 
   <%= search_form.submit "Search" %>
 <% end %>
+<p class="small">Type locations, separated by commas</p>
 </div>
