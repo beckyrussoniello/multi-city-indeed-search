@@ -1,0 +1,7 @@
+module EncodeAttr
+
+  def encode(attribute, value)
+    eval "self.encoded_#{attribute} = CGI::escape(value)"
+  end
+
+end
