@@ -48,6 +48,7 @@ GEM
       execjs
     coffee-script-source (1.3.3)
     crash-watch (1.1.3)
+    daemon_controller (1.0.0)
     database_cleaner (0.8.0)
     diff-lcs (1.1.3)
     erubis (2.7.0)
@@ -60,6 +61,7 @@ GEM
       railties (>= 3.0.0)
     faker (1.0.1)
       i18n (~> 0.4)
+    fastthread (1.0.7)
     ffi (1.0.11)
     flutie (1.3.3)
     guard (1.2.3)
@@ -90,6 +92,11 @@ GEM
     mime-types (1.19)
     multi_json (1.3.6)
     nokogiri (1.5.5)
+    passenger (3.0.13)
+      daemon_controller (>= 1.0.0)
+      fastthread (>= 1.0.1)
+      rack
+      rake (>= 0.8.1)
     pg (0.14.0)
     polyglot (0.3.3)
     rack (1.4.1)
@@ -179,6 +186,7 @@ DEPENDENCIES
   guard-rspec
   jquery-rails
   launchy
+  passenger
   pg
   rails (= 3.2.6)
   rspec-rails
