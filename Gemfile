@@ -38,6 +38,7 @@ end
 group :production do
   gem 'pg'
   gem 'therubyracer'
+  gem 'crash-watch'
 end
 
 gem 'jquery-rails'
