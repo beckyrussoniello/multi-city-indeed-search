@@ -47,6 +47,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.3.3)
+    crash-watch (1.1.3)
     database_cleaner (0.8.0)
     diff-lcs (1.1.3)
     erubis (2.7.0)
@@ -170,6 +171,7 @@ PLATFORMS
 DEPENDENCIES
   capybara
   coffee-rails (~> 3.2.1)
+  crash-watch
   database_cleaner
   factory_girl_rails
   faker
