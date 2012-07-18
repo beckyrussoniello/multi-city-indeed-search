@@ -37,7 +37,7 @@ end
 
 group :production do
   gem 'pg'
-  gem 'passenger'
+  gem 'unicorn'
   gem 'therubyracer'
   gem 'crash-watch'
 end
