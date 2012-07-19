@@ -11,8 +11,8 @@ class Search < ActiveRecord::Base
   has_many :locations
   validates_associated :locations
 
-  def perform(locs)
-    Location.create_all(self, locs[0..LOCS_LIMIT])
+  def perform
+   # Location.create_all(self, locs[0..LOCS_LIMIT])
     results = []
     self.locations.each do |loc|
       results_in_loc = self.call_api(loc)
@@ -29,6 +29,11 @@ class Search < ActiveRecord::Base
 
   def self.too_many?(locations)
     return locations.scan(/,/).size > LOCS_LIMIT
+  end
+
+  def make_list(location_string)
+    locs = location_string.split(/\s?,\s?/).uniq[0..LOCS_LIMIT]
+    Location.create_all(self, locs)
   end
 
   def simplify(hash)

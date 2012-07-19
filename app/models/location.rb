@@ -8,9 +8,13 @@ class Location < ActiveRecord::Base
   after_initialize :encode
 
   def self.create_all(search, locations)
+    already_created = search.locations.each_with_object([]) {|loc, ary| ary << loc.name}
     ActiveRecord::Base.transaction do
       locations.each do |loc|
-        Location.create(:name => loc, :search => search)
+        unless already_created.include?(loc)
+	  break if search.locations.size == 10
+          Location.create(:name => loc, :search => search)
+        end
       end
     end
   end
