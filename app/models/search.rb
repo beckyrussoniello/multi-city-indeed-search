@@ -28,7 +28,7 @@ class Search < ActiveRecord::Base
   end
 
   def self.too_many?(locations)
-    return locations.scan(/,/).size > 1 + LOCS_LIMIT
+    return locations.scan(/,/).size > LOCS_LIMIT
   end
 
   def simplify(hash)
