@@ -48,4 +48,8 @@ class Search < ActiveRecord::Base
     json = JSON.parse(page)
     json["results"]
   end
+
+  def debug_crazy(loc)
+    uri = "#{BASE_URI}?publisher=#{API_KEY}&q=#{self.encoded_query}&l=#{loc.encoded_name}#{END_OF_URI}"
+  end
 end
