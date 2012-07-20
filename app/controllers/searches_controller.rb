@@ -10,7 +10,7 @@ class SearchesController < ApplicationController
     @location = params[:location][:name]
     if @location and !@location.empty? and @search.save
 	flash[:notice] = "FYI, we only process 10 locations at a time." if Search.too_many?(@location)
-        session[:locations] = @location.split(",").uniq[0..LOCS_LIMIT] # limit number of locations
+        @search.make_list(@location)
         redirect_to @search
     else
 	flash[:notice] = case params[:search][:query]
@@ -24,7 +24,9 @@ class SearchesController < ApplicationController
   def show
     @search = Search.find(params[:id])
     @location = Location.new # this is only so fields_for will work
-    @results = @search.perform(session[:locations])
+    @results = @search.perform
+
+    @debugcrazy = @search.debug_crazy(@search.locations.first)
   end
 
 end
