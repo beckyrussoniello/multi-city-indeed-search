@@ -2,46 +2,55 @@ require 'spec_helper'
 
 describe Search do
 
-  it "has a valid factory" do
-    FactoryGirl.create(:search).should be_valid
-  end
-
-  it "is invalid without a query" do
-    FactoryGirl.build(:search, query: nil).should_not be_valid
-  end
-
-  it "is invalid without an encoded query" do
-    FactoryGirl.build(:search, encoded_query: nil).should_not be_valid
-  end
-
-  describe "identify whether too many locations have been supplied" do
-
-    context "<=10 locations" do
-      locs = CITIES.sample(rand(1..10))
-      Search.too_many?(locs).should == false
+  context "create valid Search instance" do
+    before :each do
+      @search = FactoryGirl.create(:search)
     end
 
-    context ">10 locations" do
-      locs = CITIES.sample(rand(11..30))
-      Search.too_many?(locs).should == true
+    specify { @search.should be_valid }
+    
+    it "should automatically assign 'encoded query'" do
+      Search.create(:query => JOB_TITLES.sample).encoded_query.should_not be_nil
+    end
+  end
+
+  context "invalid search" do
+    before :each do
+      @search_without_query = FactoryGirl.build(:search, query: nil)
+      @search_without_encoded_query = FactoryGirl.build(:search, encoded_query: nil)
     end
 
+    specify {@search_without_query.should_not be_valid}
+    specify {@search_without_encoded_query.should_not be_valid}
+
+  end
+
+  describe "::too_many? takes String of comma-separated locations, returns true if more than 10" do
+    before :each do
+      @ok_nbr_of_locs = CITIES.sample(rand(1..10)).join(", ")
+      @too_many_locs = locs = CITIES.sample(11).join(", ")
+    end
+
+    specify {Search.too_many?(@ok_nbr_of_locs).should eql(false)}
+
+    specify {Search.too_many?(@too_many_locs).should eql(true)}
   end
 
   describe "Performing the Search" do
     before :each do
       @search = FactoryGirl.create(:search)
-      @locs = CITIES.sample(rand(11..20)) # > 10 locs in order to demonstrate that app caps it at 10
+      @search.make_list CITIES.sample(rand(2..10)).join(", ")
     end
 
     it "processes a maximum of 10 locations at once" do
-      @search.perform(@locs)
+      @search.make_list CITIES.sample(rand(11..15)).join(", ")
+      @search.perform
       @search.locations.size.should_not > 10
     end
 
     it "calls the Indeed API once for every location" do
-      @search.perform(@locs)		  
-      @search.api_call_count.should == 10 # @locs.size 
+      @search.perform		  
+      @search.api_call_count.should == @search.locations.size 
     end
 
     it "gets an array back from the #call_api method" do
@@ -50,7 +59,7 @@ describe Search do
     end
 
     it "returns an array of job postings" do
-      results = @search.perform(@locs)
+      results = @search.perform
       results.should be_an_instance_of(Array)
       results.each do |res|
         res.should be_an_instance_of(Hash)
@@ -63,8 +72,8 @@ describe Search do
   describe "Results" do
     before :each do
       search = Search.create(:query => "associate")
-      locs = ["Bloomington, IN", "47401", "Martinsville IN", "Indiana", "47401"]
-      @results = search.perform(locs)
+      search.make_list("Bloomington IN, 47401, Martinsville IN, Indiana, 47401")
+      @results = search.perform
     end
 
     it "(by default) sorts results by most recent" do
@@ -80,8 +89,8 @@ describe Search do
 
   it "returns empty array if no results to display" do
     search = Search.create(:query => "dkfjslkdjsd") # no results for this
-    locs = ["Shell, WY", "Greybull, WY"] # literally 9 people live in Shell
-    results = search.perform(locs)
+    search.make_list "Shell, WY, Greybull, WY" # literally 9 people live in Shell
+    results = search.perform
     results.should be_empty
   end
 

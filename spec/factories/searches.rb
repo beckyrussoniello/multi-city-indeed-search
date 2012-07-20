@@ -1,10 +1,11 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 require 'faker'
+#require 'spec_helper'
 
 FactoryGirl.define do
   factory :search do
-    query { Faker::Lorem.words.join(" ") }
-    encoded_query { self.encode }
+    query { JOB_TITLES.sample }
+    encoded_query {self.encode}
   end
 
   factory :invalid_search, parent: :search do |f|

@@ -1,9 +1,8 @@
 require 'spec_helper'
 
 describe Location do
-  it "has a valid factory" do
-    FactoryGirl.create(:location).should be_valid
-  end
+  specify { FactoryGirl.create(:location).should be_valid }
+
   it "is invalid without name" do
     FactoryGirl.build(:location, name: nil).should_not be_valid
   end
@@ -21,6 +20,3 @@ describe Location do
   end
 
 end
-
-# Controller will need to handle:
-# -- display error msg & link to search tips if too many locations entered
